@@ -1,11 +1,13 @@
 const mongoose = require ('mongoose')
 
-require('dotenv').config()
- 
-let url = process.env.MONGODB_URI
+let url
 
 if ( process.env.NODE.ENV === 'production'){
     url = process.env.MONGODB_PRODUCTION_URI
+} else {
+    require('dotenv').config()
+ 
+    url = process.env.MONGODB_URI
 }
 
 mongoose.connect(url, { useNewUrlParser: true })
